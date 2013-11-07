@@ -1,0 +1,15 @@
+/* 
+    Document   : about.css
+    Created on : 29 oct. 2013, 11:57:39
+    Author     : ebiznext
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.about{
+    background-image: url('../images/employes.jpg');
+    width: 100%;
+    height: 100%;
+}
+.imageIcon{
+    max-height: 30px;
+}

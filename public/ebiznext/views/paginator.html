@@ -1,0 +1,5 @@
+ <button class="btn btn-primary" data-ng-disabled="isFirstPage()" data-ng-click="decPage()">&lt;</button>
+ {{paginator.currentPage+1}}/{{numberOfPages()}}
+ <button class="btn btn-primary" data-ng-disabled="isLastPage()" data-ng-click="incPage()">&gt;</button>
+ <span></span>
+ <select data-ng-model="paginator.pageSize" data-ng-options="size for size in pageSizeList"></select>

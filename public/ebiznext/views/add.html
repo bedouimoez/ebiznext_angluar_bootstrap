@@ -1,0 +1,53 @@
+<div data-ng-controller="addController">
+    <form class="form-horizontal panel-body" name="empForm" >
+        <fieldset>
+            <!-- Form Name -->
+            <legend>Ajouter un employé</legend>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="nom">Nom</label>
+                <div class="controls">
+                    <input id="nom" name="nom" data-ng-model="employe.nom" placeholder="Nom" class="input-xlarge" required/>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="prenom">Prénom</label>
+                <div class="controls">
+                    <input id="prenom" name="prenom" data-ng-model="employe.prenom" placeholder="Prénom" class="input-xlarge" required/>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="Poste">Poste</label>
+                <div class="controls">
+                    <input id="Poste" name="Poste" type="text" data-ng-model="employe.poste" placeholder="Poste" class="input-xlarge" required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="date">Date entrée</label>
+                <div class="controls">
+                    <input id="date" name="date" type="date" data-ng-model="employe.date" required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="Client">Client</label>
+                <div class="controls">
+                    <input id="client" name="Client" type="text" data-ng-model="employe.client" placeholder="Client"/>
+                </div>
+            </div>
+
+            <!-- Button (Double) -->
+            <div class="control-group">
+                <label class="control-label" for="save"></label>
+                <div class="controls">
+                    <button id="save" name="save" type="submit" class="btn btn-success" data-ng-click="submitFrom(empForm,employe);">Enregistrer</button>
+                    <a id="cancel" name="cancel" class="btn btn-danger" href="/ebiznext/employes">Annuler</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

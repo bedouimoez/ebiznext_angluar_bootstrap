@@ -1,0 +1,21 @@
+/* 
+    Document   : menu
+    Created on : 29 oct. 2013, 11:03:23
+    Author     : ebiznext
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.menuEbiz{
+    background: linear-gradient(rgb(38, 126, 184) 0px, rgb(19, 97, 148) 100%) repeat-x rgb(29, 111, 166);
+}
+.navbar-default .navbar-nav > li > a{
+    color:white;
+}
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+    color:darkred;
+}

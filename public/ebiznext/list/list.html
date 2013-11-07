@@ -1,0 +1,31 @@
+﻿<div data-ng-controller="projectListController">
+    <div>
+        <div class="navbar navbar-form navbar-left" role="search">
+            <label >Rechercher:</label> 
+            <div class="form-group" >     
+                <input type="text" class="form-control" placeholder="rechercher" data-ng-model="search.projet">
+            </div>
+        </div>
+    </div>
+    <!--<div data-ng-show="loading"><img src="images/ajax_loader.gif" alt=""/><strong>loading...</strong></div>-->
+    <div class="panel">
+        
+        <table class="table">
+            <tr class="btn-primary">
+                <td>Projet</td>
+                <td>Client</td>
+                <td>Date début</td>
+                <td>Date fin</td>
+                <td></td>
+            </tr>
+            <tr data-ng-repeat = " item in pageItems() | filter:search ">
+                <td>{{item.projet}}</td>
+                <td> {{item.client}}</td>
+                <td> {{item.datedebut}}</td>
+                <td> {{item.datefin}} </td>
+            </tr>
+        </table>
+        <span class="pagination"  paginator items="items | filter:search"></span>
+        
+    </div>
+</div>

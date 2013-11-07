@@ -1,0 +1,39 @@
+﻿<div data-ng-controller="employesController">
+    <div>
+        <div class="navbar navbar-form navbar-left" role="search">
+            <label >Rechercher:</label> 
+            <div class="form-group" >     
+                <input id="filterId" type="text" class="form-control" placeholder="rechercher" data-ng-model="search.prenom">
+            </div>
+        </div>
+        <div class="navbar navbar-form navbar-left">
+        <a  class="btn btn-primary glyphicon glyphicon-plus-sign" href="/ebiznext/add"> Nouveau</a>
+        </div>
+    </div>
+    <div class="panel">
+        
+        <table class="table">
+            <tr class="btn-primary">
+                <td>Image</td>
+                <td>Nom</td>
+                <td>Poste</td>
+                <td>Client</td>
+                <td>Date Entrée</td>
+                <td></td>
+            </tr>
+            <tr data-ng-repeat = " item in pageItems() | filter:search ">
+                <td>
+                    <img class="img-responsive imageIcon" src="images/avatar.png" alt="" />
+                </td>
+                <td>{{item.prenom}} {{item.nom}}</td>
+                <td> {{item.fonction}}</td>
+                <td> {{item.client}}</td>
+                <td> {{item.date}} </td>
+                <td><a data-ng-click="editEmploye(item.id);" class="btn btn-small btn-primary glyphicon glyphicon-edit" ></a>
+                <a data-ng-click="deleteEmploye(item.id);" class="btn btn-small btn-danger glyphicon glyphicon-trash" data-ng-confirm-click=" voulez-vous supprimer ?"></a></td>
+            </tr>
+        </table>
+        <span class="pagination"  paginator items="items | filter:search"></span>
+        
+    </div>
+</div>
