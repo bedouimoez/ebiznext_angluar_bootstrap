@@ -5,7 +5,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
             templateUrl: 'views/autre.html',
             controller: 'autreController'
         }).when(urlBase + 'list', {
-            templateUrl: 'list.html',
+            templateUrl: 'views/list.html',
             controller: 'projectListController'
         }).when(urlBase + 'project', {
             templateUrl: 'views/projets.html',
@@ -17,7 +17,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
             templateUrl: 'views/employes.html',
             controller: 'employesController'
         }).when(urlBase + 'edit/:id', {
-            templateUrl: 'edit.html',
+            templateUrl: 'views/edit.html',
             controller: 'editController'
         }).when(urlBase, {
             templateUrl: 'views/welcome.html',

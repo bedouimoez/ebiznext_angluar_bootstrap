@@ -68,7 +68,7 @@ services.factory('LoginService', ['$http', '$rootScope', '$cookieStore', functio
         };
 
         LoginService.Deconnect = function(login) {
-            return $http.post(urlBase + '/logout',login);
+            return $http.post(urlBase + '/logout',{login:login});
         };
         LoginService.getLoggedInfo = function() {
             return $cookieStore.get('loggedUser');

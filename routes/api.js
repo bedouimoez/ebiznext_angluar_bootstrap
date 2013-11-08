@@ -19,12 +19,11 @@ var usersLoggedIn = [
 //******************
 exports.logOut = function(req, res) {
      for (i = 0; i < usersLoggedIn.length; i++) {
-         console.log(req.body);
-         if (usersLoggedIn[i].login === req.body){
+         if (usersLoggedIn[i].login === req.body.login){
              usersLoggedIn.splice(i, 1);
          }
      }
-   res.json(req.body);
+   res.json(true);
 };
 exports.isLoggedIn = function(req, res) {
     var _login = req.query.login;
