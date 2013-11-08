@@ -22,7 +22,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
         }).when(urlBase, {
             templateUrl: 'views/welcome.html',
             controller: 'welcomeController'
-        });
+        }).otherwise({ redirectTo: urlBase });
         var interceptor = ['$location', '$q', function($location, $q) {
                 function success(response) {
                     return response;
