@@ -4,7 +4,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
         $routeProvider.when(urlBase + 'autre', {
             templateUrl: 'views/autre.html',
             controller: 'autreController'
-        }).when(urlBase + 'list/', {
+        }).when(urlBase + 'list', {
             templateUrl: 'list.html',
             controller: 'projectListController'
         }).when(urlBase + 'project', {
@@ -22,10 +22,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
         }).when(urlBase, {
             templateUrl: 'views/welcome.html',
             controller: 'welcomeController'
-        })/*.when(urlBase +'welcome', {
-            templateUrl: 'views/welcome.html',
-            controller: 'loginController'
-        })*/;
+        });
         var interceptor = ['$location', '$q', function($location, $q) {
                 function success(response) {
                     return response;
