@@ -57,9 +57,12 @@ controllers.controller('navbarController', ['$scope', '$location','LoginService'
         $scope.isLoggedIn = LoginService.isLoggedIn();
         $scope.currentUser = LoginService.getLoggedInfo();
         $scope.deconnect = function() {
-            LoginService.Deconnect();
+            LoginService.Deconnect($scope.currentUser).success(function(data){
+                LoginService.setLoggedInfo('');
             $scope.isLoggedIn = LoginService.isLoggedIn();
             window.location.href = '/ebiznext/';
+            }).error();
+            
         };
     }
 ]);

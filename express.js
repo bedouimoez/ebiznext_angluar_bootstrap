@@ -48,7 +48,7 @@ app.get('/', routes.index);
 // user authentification
 app.get('/api/auth', api.isRegistred);
 app.get('/api/auth/login',api.isLoggedIn);
-
+app.post('/api/auth/logout',api.logOut);
 // projet crud
 app.get('/api/projets', api.projets);
 
