@@ -1,9 +1,0 @@
-<div class="container" data-ng-controller="loginController">
-    <form class="form-signin" name="loginForm">
-        <span class="form-signin-heading">Login</span>
-        <input type="text" class="form-control" placeholder="login"  data-ng-model="user.login" required>
-        <input type="password" class="form-control" placeholder="Mot de passe" data-ng-model="user.pwd" required>
-        <button class="btn btn-lg btn-danger btn-block" type="submit" data-ng-click="connect(loginForm,user);">connexion</button>
-        <span data-ng-show="statut">vérifier login et/ou mot de passe</span> 
-    </form>
-</div>
