@@ -8,10 +8,11 @@
         <link  href="css/menu.css" rel="stylesheet"/>
         <link  href="css/welcome.css" rel="stylesheet"/>
         <link href="css/common.css" rel="stylesheet" >
+        <link href="css/signin.css" rel="stylesheet" >
     </head>
     <body>
-        <div data-ng-include="'views/menu.html'"></div>
-        <div class="content" data-ng-view></div>
+        <div data-ng-show="isLoggedIn" data-ng-include="'views/menu.html'"  data-ng-controller="navbarController"></div>
+        <div class="content" data-ng-view ></div>
         <div id="loading-indicator">
             <img src="images/ajax_loader.gif" alt=""/>
         </div>

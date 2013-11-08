@@ -6,16 +6,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand glyphicon glyphicon-home " href="/ebiznext"> Ebiznext</a>
+        <a class="navbar-brand glyphicon glyphicon-home " href="/ebiznext/"> Ebiznext</a>
     </div>
 
-    <div class="collapse navbar-collapse navbar-ex1-collapse" data-ng-controller="navbarController">
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             <li><a class="glyphicon glyphicon-user" href="/ebiznext/employes"> Employés</a></li>
             <li><a class="glyphicon glyphicon-folder-open" href="/ebiznext/project"> Projets</a></li>
             <li><a class="glyphicon glyphicon-cog" href="/ebiznext/autre"> Autre</a></li> 
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li> <a class="glyphicon glyphicon-off" data-ng-click="deconnect();">{{loggedInUser}}</a></li>
+            <li> <a class="glyphicon glyphicon-off" data-ng-click="deconnect();">{{currentUser}}</a></li>
     </div>
 </nav>

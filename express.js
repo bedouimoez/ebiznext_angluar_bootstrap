@@ -26,7 +26,7 @@ app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
-// development only
+// development onlyisLoggedIn
 if (app.get('env') === 'development') {
   app.use(express.errorHandler());
 }

@@ -1,6 +1,7 @@
 var controllers = angular.module('controllers',[]);
-controllers.controller('employesController', ['$scope', '$location', 'Employe', function($scope, $location, Employe) {
+controllers.controller('employesController', ['$scope','LoginService', '$location', 'Employe', function($scope,LoginService, $location, Employe) {
         $scope.items = [];
+        $scope.isLoggedIn = LoginService.isLoggedIn();
         function getItems() {
             Employe.getList().success(function(list) {
                 $scope.items = list;
@@ -52,12 +53,13 @@ controllers.controller('editController', ['$scope', '$routeParams', '$location',
             }
         };
     }]);
-controllers.controller('navbarController', ['$scope', '$cookieStore', '$location', function($scope, $cookieStore, $location) {
-        $scope.loggedInUser = $cookieStore.get('loggedUser');
+controllers.controller('navbarController', ['$scope', '$location','LoginService', function($scope, $location,LoginService) {
+        $scope.isLoggedIn = LoginService.isLoggedIn();
+        $scope.currentUser = LoginService.getLoggedInfo();
         $scope.deconnect = function() {
-            $cookieStore.put('loggedUser', '');
-            $location.path('/ebiznext');
-            return;
+            LoginService.Deconnect();
+            $scope.isLoggedIn = LoginService.isLoggedIn();
+            window.location.href = '/ebiznext/';
         };
     }
 ]);
@@ -65,9 +67,12 @@ controllers.controller('projectController', ['$scope', 'Project',
     function($scope, Project) {
 
     }]);
-controllers.controller('welcomeController', ['$scope', function($scope) {
+controllers.controller('welcomeController', ['$scope','LoginService', function($scope,LoginService) {
+   $scope.isLoggedIn = LoginService.isLoggedIn();
+        
     }
 ]);
+
 controllers.controller('autreController', ['$scope', function($scope) {
     }
 ]);
@@ -85,20 +90,22 @@ controllers.controller('projectListController', ['$scope', '$location','Project'
     }
 ]);
 
-controllers.controller('loginController', ['$scope', '$location', 'LoginService', '$cookieStore', function($scope, $location, LoginService, $cookieStore) {
-        $scope.statut = false;
+controllers.controller('loginController', ['$scope','$location','LoginService', function($scope,$location,LoginService) {
+        $scope.isLoggedIn = LoginService.isLoggedIn();
+        $scope.error = false;
         $scope.connect = function(form, user) {
             if (form.$valid) {
-                LoginService.isRegistred(user).success(function(data) {
-                    if (data.exist === true) {
-                        $cookieStore.put('loggedUser', data.user.login);
-                        $location.path('/ebiznext/welcome');
-                    } else {
-                        $scope.statut = true;
-                    }
-                }).error(function(error) {
-                    console.log('server is down');
-                });
+                LoginService.setLoggedInfo('');
+                LoginService.login(user).success(function(data) {
+                if (data.exist === true) {
+                    LoginService.setLoggedInfo(data.user.login);
+                    $scope.isLoggedIn = LoginService.isLoggedIn();
+                    window.location.reload(true);
+                }else {
+                    $scope.error = true;
+                }
+            }).error(function(error) {
+            });
             }
         };
     }]);

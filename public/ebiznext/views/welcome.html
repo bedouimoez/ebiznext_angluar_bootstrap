@@ -1,8 +1,18 @@
 <div>
-    <div class="panel panel-default">
+    <div class="panel panel-default" data-ng-show="isLoggedIn">
         <div class="panel-body">
             <h2> Gestion des employés d'ebiznext</h2>
         </div>
         <img class="img-responsive" src="images/employes.jpg" alt="" />
     </div>
+    <div data-ng-controller="loginController" data-ng-show="!isLoggedIn">
+        <form class="form-signin" name="loginForm">
+            <input type="text" class="form-control" placeholder="Utilisateur"  data-ng-model="user.login" required>
+            <input type="password" class="form-control" placeholder="Mot de passe" data-ng-model="user.pwd" required>
+            <button class="btn btn-lg btn-default btn-block" type="submit" data-ng-click="connect(loginForm,user);">connexion</button>
+            <div data-ng-show="error" class="alert alert-danger">vérifier login et/ou mot de passe</div>
+        </form>
+        
+    </div>
+
 </div>

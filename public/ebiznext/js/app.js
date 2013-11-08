@@ -1,5 +1,5 @@
-var moduleProj = angular.module('ebiznext', ['directives','services','controllers', 'ngCookies']);
-moduleProj.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+var ebiznext = angular.module('ebiznext', ['directives', 'services', 'controllers', 'ngCookies']);
+ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
         var urlBase = '/ebiznext/';
         $routeProvider.when(urlBase + 'autre', {
             templateUrl: 'views/autre.html',
@@ -20,47 +20,79 @@ moduleProj.config(['$routeProvider', '$locationProvider', function($routeProvide
             templateUrl: 'edit.html',
             controller: 'editController'
         }).when(urlBase, {
-            templateUrl:'views/welcome.html',
+            templateUrl: 'views/welcome.html',
             controller: 'welcomeController'
-        });
+        })/*.when(urlBase +'welcome', {
+            templateUrl: 'views/welcome.html',
+            controller: 'loginController'
+        })*/;
+        var interceptor = ['$location', '$q', function($location, $q) {
+                function success(response) {
+                    return response;
+                }
+                function error(response) {
+                    if (response.status === 401) {
+                        $location.path('/ebiznext/');
+                        return $q.reject(response);
+                    } else {
+                        return $q.reject(response);
+                    }
+                }
+                return function(promise) {
+                    return promise.then(success, error);
+                };
+            }];
+        $httpProvider.responseInterceptors.push(interceptor);
         $locationProvider.html5Mode(true);
     }]);
 
-moduleProj.config(['$httpProvider', function($httpProvider) {
-    var interceptor = ['$q', 'LoadingIndicatorHandler', function($q, LoadingIndicatorHandler) {
-        return function(promise) {
-            LoadingIndicatorHandler.enable();    
-            return promise.then(
-                function( response ) {
-                    LoadingIndicatorHandler.disable();
-                    return response;
-                },
-                function( response ) {
-                    LoadingIndicatorHandler.disable();
-                    return $q.reject( response );
-                }
-            );
-        };
-    }];
-    
-    $httpProvider.responseInterceptors.push(interceptor);
-}]);
+ebiznext.run(['$rootScope', '$location', '$cookieStore', 'LoginService', function($rootScope, $location, $cookieStore, LoginService) {
+        $rootScope.$on("$routeChangeStart", function(event, next, current) {
+            var loggedInUser =  LoginService.isLoggedIn();
+                if(!loggedInUser ){
+                    $location.path('/ebiznext/'); 
+            }
+        });
+    }]);
 
-moduleProj.factory('LoadingIndicatorHandler', function(){
-var $element = $('#loading-indicator');
+ebiznext.config(['$httpProvider', function($httpProvider) {
+        var interceptor = ['$q', 'LoadingIndicatorHandler', function($q, LoadingIndicatorHandler) {
+                return function(promise) {
+                    LoadingIndicatorHandler.enable();
+                    return promise.then(
+                            function(response) {
+                                LoadingIndicatorHandler.disable();
+                                return response;
+                            },
+                            function(response) {
+                                LoadingIndicatorHandler.disable();
+                                return $q.reject(response);
+                            }
+                    );
+                };
+            }];
+
+        $httpProvider.responseInterceptors.push(interceptor);
+    }]);
+
+ebiznext.factory('LoadingIndicatorHandler', function() {
+    var $element = $('#loading-indicator');
     return {
         enable_count: 0,
         disable_count: 0,
         enable: function() {
             this.enable_count++;
-            
-            if ( $element.length ) $element.show();
+
+            if ($element.length)
+                $element.show();
         },
         disable: function() {
             this.disable_count++;
-            
-            if ( this.enable_count === this.disable_count ) {
-                if ($element.length){ $element.hide();}
+
+            if (this.enable_count === this.disable_count) {
+                if ($element.length) {
+                    $element.hide();
+                }
             }
         }
     };

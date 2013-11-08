@@ -1,4 +1,4 @@
-var services = angular.module('services',[]);
+var services = angular.module('services', []);
 services.factory('Employe', ['$http', function($http) {
         var urlBase = 'http://localhost:8080/api/employe';
         var Employe = {};
@@ -50,30 +50,33 @@ services.factory('Project', ['$http', function($http) {
         };
         return Project;
     }]);
-services.factory('LoginService', ['$http', function($http) {
+
+services.factory('LoginService', ['$http', '$rootScope', '$cookieStore', function($http, $rootScope, $cookieStore) {
         var urlBase = 'http://localhost:8080/api/auth';
         var LoginService = {};
-        var loggedUser = "";
-        LoginService.getUser = function() {
-            return $http.get(urlBase + '/' + id);
-        };
         LoginService.isRegistred = function(user) {
             return $http.get(urlBase, {params: {login: user.login, pwd: user.pwd}});
         };
-
-        LoginService.isLoggedIn = function(user) {
-            return $http.get(urlBase, {params: {login: user.login, pwd: user.pwd}});
+        LoginService.login = function(user) {
+           return $http.get(urlBase, {params: {login: user.login, pwd: user.pwd}});
+        };
+        LoginService.isLoggedIn = function() {
+            if (LoginService.getLoggedInfo() !== '') {
+                return true;
+            }
+            return false;
         };
 
-        LoginService.Deconnect = function(user) {
-            return $http.delete(user);
+        LoginService.Deconnect = function() {
+            //$http.delete(urlBase);
+             LoginService.setLoggedInfo('');
         };
         LoginService.getLoggedInfo = function() {
-                    return loggedUser;
-                };
-                
+            return $cookieStore.get('loggedUser');
+        };
+
         LoginService.setLoggedInfo = function(login) {
-                    loggedUser = login;
-                };
+            $cookieStore.put('loggedUser', login);
+        };
         return LoginService;
     }]);

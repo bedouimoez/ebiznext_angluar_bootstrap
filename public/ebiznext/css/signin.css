@@ -1,17 +1,9 @@
-body {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-image : url('../images/employes.jpg');
-    background-color : white;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .form-signin {
     max-width: 330px;
     padding: 15px;
-    margin: 0 auto;
-    background: linear-gradient(rgb(38, 126, 184) 0px, rgb(19, 97, 148) 100%) repeat-x rgb(29, 111, 166);
+    margin: 3px auto;
+    border: 2px solid darkblue;
+    /*background: linear-gradient(rgb(38, 126, 184) 0px, rgb(19, 97, 148) 100%) repeat-x rgb(29, 111, 166);*/
     -moz-border-radius: 10px;
     border-radius: 10px; 
 }
@@ -20,8 +12,10 @@ body {
     margin-bottom: 10px;
 }
 .form-signin-heading{
+    font-size: 15px;
     text-align: center;
-    color: white;
+    margin-top: 8px;
+    color: darkblue;
 }
 .form-signin .checkbox {
     font-weight: normal;
@@ -40,7 +34,7 @@ body {
     z-index: 2;
 }
 .form-signin input[type="text"] {
-    margin-bottom: -1px;
+    margin-bottom: 2px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -48,4 +42,7 @@ body {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+.form-signin button[type="submit"] {
+ color:darkblue;
 }
