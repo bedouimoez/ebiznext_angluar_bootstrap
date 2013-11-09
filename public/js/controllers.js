@@ -36,12 +36,10 @@ controllers.controller('addController', ['$scope', '$location', 'Employe', funct
 controllers.controller('editController', ['$scope', '$routeParams', '$location', 'Employe', function($scope, $routeParams, $location, Employe) {
         $scope.currentUser = {};
         var id = $routeParams.id;
-        (function getCurrentUser() {
+        (function() {
             Employe.getEmploye(id).success(function(emp) {
-                $scope.currentUser = emp;
-            }).error(function(data) {
-            });
-        })();
+            $scope.currentUser = emp;
+            }).error(function(){});})();
 
         $scope.submitFrom = function(form, user) {
             if (form.$valid) {
@@ -58,11 +56,11 @@ controllers.controller('navbarController', ['$scope', '$location','LoginService'
         $scope.currentUser = LoginService.getLoggedInfo();
         $scope.deconnect = function() {
             LoginService.Deconnect(LoginService.getLoggedInfo()).success(function(){
-                LoginService.setLoggedInfo('');
+                // TODO complete this
+            LoginService.setLoggedInfo('');
             $scope.isLoggedIn = LoginService.isLoggedIn();
             window.location.href = '/';
-            }).error();
-            
+            }).error(function(){});
         };
     }
 ]);
@@ -85,11 +83,8 @@ controllers.controller('projectListController', ['$scope', '$location','Project'
         function getItems() {
             Project.getProjects().success(function(data){
                 $scope.items = data;
-            }).error(
-                
-                );
+            }).error();
         }
-
     }
 ]);
 
@@ -107,7 +102,7 @@ controllers.controller('loginController', ['$scope','$location','LoginService', 
                 }else {
                     $scope.error = true;
                 }
-            }).error(function(error) {
+            }).error(function() {
             });
             }
         };
