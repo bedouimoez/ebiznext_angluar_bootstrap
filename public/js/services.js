@@ -1,6 +1,6 @@
 var services = angular.module('services', []);
 services.factory('Employe', ['$http', function($http) {
-        var urlBase = 'http://localhost:8080/api/employe';
+        var urlBase = 'http://localhost:3000/api/employe';
         var Employe = {};
 
         Employe.getList = function() {
@@ -26,7 +26,7 @@ services.factory('Employe', ['$http', function($http) {
     }]);
 
 services.factory('Project', ['$http', function($http) {
-        var urlBase = 'http://localhost:8080/api/projet';
+        var urlBase = 'http://localhost:3000/api/projet';
         var Project = {};
 
         Project.getProjects = function() {
@@ -52,7 +52,7 @@ services.factory('Project', ['$http', function($http) {
     }]);
 
 services.factory('LoginService', ['$http', '$rootScope', '$cookieStore', function($http, $rootScope, $cookieStore) {
-        var urlBase = 'http://localhost:8080/api/auth';
+        var urlBase = 'http://localhost:3000/api/auth';
         var LoginService = {};
         LoginService.isRegistred = function(user) {
             return $http.get(urlBase, {params: {login: user.login, pwd: user.pwd}});
