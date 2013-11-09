@@ -1,6 +1,6 @@
 var ebiznext = angular.module('ebiznext', ['directives', 'services', 'controllers', 'ngCookies']);
 ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
-        var urlBase = '/ebiznext/';
+        var urlBase = '/';
         $routeProvider.when(urlBase + 'autre', {
             templateUrl: 'views/autre.html',
             controller: 'autreController'
@@ -29,7 +29,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
                 }
                 function error(response) {
                     if (response.status === 401) {
-                        $location.path('/ebiznext/');
+                        $location.path('/');
                         return $q.reject(response);
                     } else {
                         return $q.reject(response);
@@ -47,7 +47,7 @@ ebiznext.run(['$rootScope', '$location', '$cookieStore', 'LoginService', functio
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
             var loggedInUser =  LoginService.isLoggedIn();
                 if(!loggedInUser ){
-                    $location.path('/ebiznext/'); 
+                    $location.path('/'); 
             }
         });
     }]);

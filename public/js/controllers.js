@@ -11,7 +11,7 @@ controllers.controller('employesController', ['$scope','LoginService', '$locatio
         }
         ;
         $scope.editEmploye = function(id) {
-            $location.path('/ebiznext/edit/' + id);
+            $location.path('/edit/' + id);
         };
         $scope.deleteEmploye = function(id) {
             Employe.deleteEmploye(id);
@@ -25,7 +25,7 @@ controllers.controller('addController', ['$scope', '$location', 'Employe', funct
             if (form.$valid) {
                 var employe = {nom: user.nom, prenom: user.prenom, fonction: user.poste, date: user.date, client: user.client};
                 Employe.insertEmploye(employe).success(function() {
-                    $location.path('/ebiznext/employes');
+                    $location.path('/employes');
                 }).error(function() {
 
                 });
@@ -46,7 +46,7 @@ controllers.controller('editController', ['$scope', '$routeParams', '$location',
         $scope.submitFrom = function(form, user) {
             if (form.$valid) {
                 Employe.updateEmploye(user).success(function() {
-                    $location.path('/ebiznext/employes');
+                    $location.path('/employes');
                 }).error(function() {
 
                 });
@@ -60,7 +60,7 @@ controllers.controller('navbarController', ['$scope', '$location','LoginService'
             LoginService.Deconnect(LoginService.getLoggedInfo()).success(function(){
                 LoginService.setLoggedInfo('');
             $scope.isLoggedIn = LoginService.isLoggedIn();
-            window.location.href = '/ebiznext/';
+            window.location.href = '/';
             }).error();
             
         };
