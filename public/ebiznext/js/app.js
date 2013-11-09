@@ -17,7 +17,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
             templateUrl: 'views/employes.html',
             controller: 'employesController'
         }).when(urlBase + 'edit/:id', {
-            templateUrl: 'views/edit.html',
+            templateUrl: 'edit.html',
             controller: 'editController'
         }).when(urlBase, {
             templateUrl: 'views/welcome.html',

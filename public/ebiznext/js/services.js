@@ -61,7 +61,8 @@ services.factory('LoginService', ['$http', '$rootScope', '$cookieStore', functio
            return $http.get(urlBase, {params: {login: user.login, pwd: user.pwd}});
         };
         LoginService.isLoggedIn = function() {
-            if (LoginService.getLoggedInfo() !== '') {
+            if (LoginService.getLoggedInfo() !== undefined && LoginService.getLoggedInfo() !== '') {
+                //TODO check connection
                 return true;
             }
             return false;
