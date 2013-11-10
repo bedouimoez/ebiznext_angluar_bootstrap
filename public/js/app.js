@@ -21,7 +21,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
         }).when('/', {
             templateUrl: 'partials/welcome.html',
             controller: 'welcomeController'
-        }).otherwise({ redirectTo: '/' });
+        }).otherwise({redirectTo: '/'});
         var interceptor = ['$location', '$q', function($location, $q) {
                 function success(response) {
                     return response;
@@ -44,9 +44,9 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
 
 ebiznext.run(['$rootScope', '$location', 'LoginService', function($rootScope, $location, LoginService) {
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
-            var loggedInUser =  LoginService.isLoggedIn();
-                if(!loggedInUser ){
-                    $location.path('/'); 
+            var loggedInUser = LoginService.isLoggedIn();
+            if (!loggedInUser) {
+                $location.path('/');
             }
         });
     }]);
@@ -78,17 +78,16 @@ ebiznext.factory('LoadingIndicatorHandler', function() {
         disable_count: 0,
         enable: function() {
             this.enable_count++;
-            if ($element.length)
-                //$element.show();
-        $.blockUI({ message: $element }); 
+            if ($element.length) {
+                $.blockUI({message: $element});
+            }
         },
         disable: function() {
             this.disable_count++;
 
             if (this.enable_count === this.disable_count) {
                 if ($element.length) {
-                    //$element.hide();
-                    $.unblockUI({ message: $element });
+                    $.unblockUI({message: $element});
                 }
             }
         }
