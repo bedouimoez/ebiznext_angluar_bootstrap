@@ -8,8 +8,7 @@ controllers.controller('employesController', ['$scope','LoginService', '$locatio
             }).error(function(error) {
                 $scope.status = 'connection with server is not established ';
             });
-        }
-        ;
+        };
         $scope.editEmploye = function(id) {
             $location.path('/edit/' + id);
         };
@@ -34,9 +33,9 @@ controllers.controller('addController', ['$scope', '$location', 'Employe', funct
     }]);
 
 controllers.controller('editController', ['$scope', '$routeParams', '$location', 'Employe', function($scope, $routeParams, $location, Employe) {
-        $scope.currentUser = {};
-        var id = $routeParams.id;
+        $scope.currentUser = {}; 
         (function() {
+            var id = $routeParams.id;
             Employe.getEmploye(id).success(function(emp) {
             $scope.currentUser = emp;
             }).error(function(){});})();
@@ -51,40 +50,34 @@ controllers.controller('editController', ['$scope', '$routeParams', '$location',
             }
         };
     }]);
-controllers.controller('navbarController', ['$scope', '$location','LoginService', function($scope, $location,LoginService) {
+controllers.controller('navbarController', ['$scope', '$window','LoginService', function($scope, $window,LoginService) {
         $scope.isLoggedIn = LoginService.isLoggedIn();
         $scope.currentUser = LoginService.getLoggedInfo();
         $scope.deconnect = function() {
-            LoginService.Deconnect(LoginService.getLoggedInfo()).success(function(){
+        LoginService.Deconnect(LoginService.getLoggedInfo()).success(function(){
                 // TODO complete this
-            LoginService.setLoggedInfo('');
-            window.location.href = '/';
-            }).error(function(){});
+       LoginService.setLoggedInfo('');
+       $window.location.href = '/';
+        }).error(function(){});
         };
     }
 ]);
-controllers.controller('projectController', ['$scope', 'Project',
-    function($scope, Project) {
 
-    }]);
 controllers.controller('welcomeController', ['$scope','LoginService', function($scope,LoginService) {
-   $scope.isLoggedIn = LoginService.isLoggedIn();
-        
+   $scope.isLoggedIn = LoginService.isLoggedIn();     
     }
 ]);
 
-controllers.controller('autreController', ['$scope', function($scope) {}]);
-controllers.controller('projectListController', ['$scope', '$location','Project', function($scope, $location,Project) {
+controllers.controller('projectListController', ['$scope','Project', function($scope,Project) {
         $scope.items = [];
-        (function() {
-            Project.getProjects().success(function(data){
-                $scope.items = data;
-            }).error();
+        (function (){
+            Project.getProjects().success(function(data){$scope.items = data;})
+                    .error(function(){});
         })();
     }
 ]);
 
-controllers.controller('loginController', ['$scope','$location','LoginService', function($scope,$location,LoginService) {
+controllers.controller('loginController', ['$scope','$window','LoginService', function($scope,$window,LoginService) {
         $scope.isLoggedIn = LoginService.isLoggedIn();
         $scope.error = false;
         $scope.connect = function(form, user) {
@@ -94,7 +87,7 @@ controllers.controller('loginController', ['$scope','$location','LoginService', 
                 if (data.exist === true) {
                     LoginService.setLoggedInfo(data.user.login);
                     $scope.isLoggedIn = LoginService.isLoggedIn();
-                    window.location.reload(true);
+                    $window.location.reload(true);
                 }else {
                     $scope.error = true;
                 }
@@ -103,3 +96,5 @@ controllers.controller('loginController', ['$scope','$location','LoginService', 
             }
         };
     }]);
+controllers.controller('autreController', ['$scope', function($scope) {}]);
+controllers.controller('projectController', ['$scope',function($scope) {}]);
