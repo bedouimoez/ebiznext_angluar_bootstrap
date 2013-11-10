@@ -1,28 +1,27 @@
 var ebiznext = angular.module('ebiznext', ['directives', 'services', 'controllers', 'ngCookies']);
 ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
-        var urlBase = '/';
-        $routeProvider.when(urlBase + 'autre', {
-            templateUrl: 'views/autre.html',
+        $routeProvider.when('/autre', {
+            templateUrl: 'partials/autre.html',
             controller: 'autreController'
-        }).when(urlBase + 'list', {
-            templateUrl: 'views/list.html',
+        }).when('/list', {
+            templateUrl: 'partials/list.html',
             controller: 'projectListController'
-        }).when(urlBase + 'project', {
-            templateUrl: 'views/projets.html',
+        }).when('/project', {
+            templateUrl: 'partials/projets.html',
             controller: 'projectController'
-        }).when(urlBase + 'add', {
-            templateUrl: 'views/add.html',
+        }).when('/add', {
+            templateUrl: 'partials/add.html',
             controller: 'addController'
-        }).when(urlBase + 'employes', {
-            templateUrl: 'views/employes.html',
+        }).when('/employes', {
+            templateUrl: 'partials/employes.html',
             controller: 'employesController'
-        }).when(urlBase + 'edit/:id', {
+        }).when('/edit/:id', {
             templateUrl: 'edit.html',
             controller: 'editController'
-        }).when(urlBase, {
-            templateUrl: 'views/welcome.html',
+        }).when('/', {
+            templateUrl: 'partials/welcome.html',
             controller: 'welcomeController'
-        }).otherwise({ redirectTo: urlBase });
+        }).otherwise({ redirectTo: '/' });
         var interceptor = ['$location', '$q', function($location, $q) {
                 function success(response) {
                     return response;
