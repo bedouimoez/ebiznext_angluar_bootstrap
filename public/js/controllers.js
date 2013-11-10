@@ -58,7 +58,6 @@ controllers.controller('navbarController', ['$scope', '$location','LoginService'
             LoginService.Deconnect(LoginService.getLoggedInfo()).success(function(){
                 // TODO complete this
             LoginService.setLoggedInfo('');
-            $scope.isLoggedIn = LoginService.isLoggedIn();
             window.location.href = '/';
             }).error(function(){});
         };
