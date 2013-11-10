@@ -78,16 +78,17 @@ ebiznext.factory('LoadingIndicatorHandler', function() {
         disable_count: 0,
         enable: function() {
             this.enable_count++;
-
             if ($element.length)
-                $element.show();
+                //$element.show();
+        $.blockUI({ message: $element }); 
         },
         disable: function() {
             this.disable_count++;
 
             if (this.enable_count === this.disable_count) {
                 if ($element.length) {
-                    $element.hide();
+                    //$element.hide();
+                    $.unblockUI({ message: $element });
                 }
             }
         }

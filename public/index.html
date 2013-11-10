@@ -13,7 +13,7 @@
     <body>
         <div data-ng-show="isLoggedIn" data-ng-include="'partials/menu.html'"  data-ng-controller="navbarController"></div>
         <div class="content" data-ng-view ></div>
-        <div id="loading-indicator">
+        <div id="loading-indicator" style="display: none">
             <img src="images/ajax_loader.gif" alt=""/>
         </div>
         <script src="js/lib/angular-1.0.7.min.js"></script>
@@ -25,5 +25,6 @@
         <script src="js/directives.js"></script>
         <script src="js/services.js"></script>
         <script src="js/controllers.js"></script>
+        <script src="js/lib/jquery.blockUI.js"></script>
     </body>
 </html>
