@@ -73,17 +73,14 @@ controllers.controller('welcomeController', ['$scope','LoginService', function($
     }
 ]);
 
-controllers.controller('autreController', ['$scope', function($scope) {
-    }
-]);
+controllers.controller('autreController', ['$scope', function($scope) {}]);
 controllers.controller('projectListController', ['$scope', '$location','Project', function($scope, $location,Project) {
         $scope.items = [];
-        getItems();
-        function getItems() {
+        (function() {
             Project.getProjects().success(function(data){
                 $scope.items = data;
             }).error();
-        }
+        })();
     }
 ]);
 

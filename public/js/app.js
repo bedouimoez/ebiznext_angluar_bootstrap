@@ -42,7 +42,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
         $locationProvider.html5Mode(true);
     }]);
 
-ebiznext.run(['$rootScope', '$location', '$cookieStore', 'LoginService', function($rootScope, $location, $cookieStore, LoginService) {
+ebiznext.run(['$rootScope', '$location', 'LoginService', function($rootScope, $location, LoginService) {
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
             var loggedInUser =  LoginService.isLoggedIn();
                 if(!loggedInUser ){
