@@ -1,8 +1,8 @@
 var ebiznext = angular.module('ebiznext', ['directives', 'services', 'controllers', 'ngCookies']);
 ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
-        $routeProvider.when('/autre', {
-            templateUrl: 'partials/autre.html',
-            controller: 'autreController'
+        $routeProvider.when('/contact', {
+            templateUrl: 'partials/contact.html',
+            controller: 'contactController'
         }).when('/list', {
             templateUrl: 'partials/list.html',
             controller: 'projectListController'

@@ -96,5 +96,5 @@ controllers.controller('loginController', ['$scope','$window','LoginService', fu
             }
         };
     }]);
-controllers.controller('autreController', ['$scope', function($scope) {}]);
+controllers.controller('contactController', ['$scope', function($scope) {}]);
 controllers.controller('projectController', ['$scope',function($scope) {}]);
