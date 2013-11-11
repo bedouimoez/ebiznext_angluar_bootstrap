@@ -4,8 +4,8 @@
  */
 
 var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
+  routes = require('./server_data'),
+  api = require('./server_data/api'),
   http = require('http'),
   path = require('path');
 
