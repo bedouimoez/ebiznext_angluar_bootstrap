@@ -51,15 +51,13 @@ services.factory('Project', ['$http', function($http) {
         return Project;
     }]);
 
-services.factory('LoginService', ['$http', '$rootScope', '$cookieStore', function($http, $rootScope, $cookieStore) {
+services.factory('LoginService', ['$http', '$cookieStore', function($http, $cookieStore) {
         var urlBase = 'http://localhost:3000/api/auth';
         var LoginService = {};
-        LoginService.isRegistred = function(user) {
-            return $http.get(urlBase, {params: {login: user.login, pwd: user.pwd}});
+        LoginService.connect = function(user) {
+            return $http.post(urlBase,user);
         };
-        LoginService.login = function(user) {
-           return $http.get(urlBase, {params: {login: user.login, pwd: user.pwd}});
-        };
+        
         LoginService.isLoggedIn = function() {
             if (LoginService.getLoggedInfo() !== undefined && LoginService.getLoggedInfo() !== '') {
                 //TODO check connection

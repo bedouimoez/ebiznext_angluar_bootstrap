@@ -18,7 +18,7 @@ var usersLoggedIn = [
 
 //******************
 exports.logOut = function(req, res) {
-     for (i = 0; i < usersLoggedIn.length; i++) {
+     for (var i = 0; i < usersLoggedIn.length; i++) {
          if (usersLoggedIn[i].login === req.body.login){
              usersLoggedIn.splice(i, 1);
          }
@@ -29,7 +29,7 @@ exports.isLoggedIn = function(req, res) {
     var _login = req.query.login;
     var _pwd = req.query.pwd;
     var logged = false;
-    for (i = 0; i < usersLoggedIn.length; i++) {
+    for (var i = 0; i < usersLoggedIn.length; i++) {
         if (usersLoggedIn[i].login === _login && usersLoggedIn[i].pwd === _pwd) {
             logged = true;
             break;
@@ -38,12 +38,12 @@ exports.isLoggedIn = function(req, res) {
     res.json(logged);
 };
 
-exports.isRegistred = function(req, res) {
-    var _login = req.query.login;
-    var _pwd = req.query.pwd;
+exports.connect = function(req, res) {
+    var _login = req.body.login;
+    var _pwd = req.body.pwd; 
     var loggedUser = null;
     var exist = false;
-    for (i = 0; i < users.length; i++) {
+    for (var i = 0; i < users.length; i++) {
         if (users[i].login === _login && users[i].pwd === _pwd) {
             exist = true;
             loggedUser = users[i];

@@ -46,7 +46,7 @@ app.get('/', routes.index);
 // JSON API
 
 // user authentification
-app.get('/api/auth', api.isRegistred);
+app.post('/api/auth', api.connect);
 app.get('/api/auth/login',api.isLoggedIn);
 app.post('/api/auth/logout',api.logOut);
 // projet crud

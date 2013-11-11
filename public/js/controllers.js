@@ -83,7 +83,7 @@ controllers.controller('loginController', ['$scope','$window','LoginService', fu
         $scope.connect = function(form, user) {
             if (form.$valid) {
                 LoginService.setLoggedInfo('');
-                LoginService.login(user).success(function(data) {
+                LoginService.connect(user).success(function(data) {
                 if (data.exist === true) {
                     LoginService.setLoggedInfo(data.user.login);
                     $scope.isLoggedIn = LoginService.isLoggedIn();
