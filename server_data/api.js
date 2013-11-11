@@ -26,11 +26,11 @@ exports.logOut = function(req, res) {
    res.json(true);
 };
 exports.isLoggedIn = function(req, res) {
-    var _login = req.query.login;
-    var _pwd = req.query.pwd;
+    var _login = req.body.login;
+    console.log(_login);
     var logged = false;
     for (var i = 0; i < usersLoggedIn.length; i++) {
-        if (usersLoggedIn[i].login === _login && usersLoggedIn[i].pwd === _pwd) {
+        if (usersLoggedIn[i].login === _login) {
             logged = true;
             break;
         }
