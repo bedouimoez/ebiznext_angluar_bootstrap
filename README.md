@@ -17,7 +17,7 @@ Runs like a typical express app:
 
 ### Running tests
 
-Coming soon!
+/test/SpecRunner.html
 
 ## Contact
 
