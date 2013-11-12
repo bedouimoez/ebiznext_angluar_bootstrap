@@ -15,15 +15,21 @@ _Note: Although Jade supports interpolation, you should be doing that mostly on 
 server and browser templating will convolute your app. Instead, use Jade as a syntactic sugar for
 HTML, and let AngularJS take care of interpolation on the browser side._
 
-## How to use angular-express-seed
+## How to use ebiznext_angular_bootsrap
 
 Clone the angular-express-seed repository, run `npm install` to grab the dependencies, and start hacking!
 
 ### Running the app
 
 Runs like a typical express app:
+    npm install 
 
-    node app.js
+    node express.js
+    
+    localhost:3000
+
+    user : admin
+    pwd  : admin 
 
 ### Running tests
 
@@ -63,12 +69,6 @@ Just fetch the changes and merge them into your project with git.
       partials/         --> angular view partials (partial jade templates)
         partial1.jade
         partial2.jade
-
-
-
-## Example App
-
-A simple [blog](https://github.com/btford/angular-express-blog) based on this seed.
 
 
 ## Contact
