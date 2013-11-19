@@ -39,7 +39,7 @@ controllers.controller('editController', ['$scope', '$routeParams', '$location',
             Employe.getEmploye(id).success(function(emp) {
             $scope.currentUser = emp;
             }).error(function(){});})();
-
+        
         $scope.submitFrom = function(form, user) {
             if (form.$valid) {
                 Employe.updateEmploye(user).success(function() {
@@ -55,9 +55,7 @@ controllers.controller('navbarController', ['$scope', '$window','LoginService', 
         $scope.currentUser = LoginService.getLoggedInfo();
         $scope.deconnect = function() {
         LoginService.Deconnect(LoginService.getLoggedInfo()).success(function(){
-                // TODO complete this
-       LoginService.setLoggedInfo('');
-       $window.location.href = '/';
+        $window.location.href = '/';
         }).error(function(){});
         };
     }
@@ -82,10 +80,8 @@ controllers.controller('loginController', ['$scope','$window','LoginService', fu
         $scope.error = false;
         $scope.connect = function(form, user) {
             if (form.$valid) {
-                LoginService.setLoggedInfo('');
                 LoginService.connect(user).success(function(data) {
                 if (data.exist === true) {
-                    LoginService.setLoggedInfo(data.user.login);
                     $scope.isLoggedIn = LoginService.isLoggedIn();
                     $window.location.reload(true);
                 }else {

@@ -23,7 +23,8 @@ exports.logOut = function(req, res) {
              usersLoggedIn.splice(i, 1);
          }
      }
-   res.json(true);
+    res.clearCookie('user');
+    res.send(200, "OK");
 };
 exports.isLoggedIn = function(req, res) {
     var _login = req.body.login;
@@ -46,12 +47,13 @@ exports.connect = function(req, res) {
     for (var i = 0; i < users.length; i++) {
         if (users[i].login === _login && users[i].pwd === _pwd) {
             exist = true;
-            loggedUser = users[i];
+            loggedUser = users[i].login;
             usersLoggedIn.push(users[i]);
             break;
         }
     }
-    res.json({exist: exist, user: loggedUser});
+    res.cookie('user', loggedUser);
+    res.json({exist: exist});
 };
 
 //*****************

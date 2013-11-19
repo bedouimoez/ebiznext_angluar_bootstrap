@@ -24,13 +24,19 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
         }).otherwise({redirectTo: '/'});
         var interceptor = ['$location', '$q', function($location, $q) {
                 function success(response) {
+                    $('#error-indicator').hide();
                     return response;
                 }
                 function error(response) {
-                    if (response.status === 401) {
+                    if (response.status === 0) {
+                        $('#error-indicator').show();
+                        $q.reject(response);
+                    } else if (response.status === 401) {
                         $location.path('/');
+                        $('#error-indicator').hide();
                         return $q.reject(response);
                     } else {
+                        $('#error-indicator').hide();
                         return $q.reject(response);
                     }
                 }
@@ -45,7 +51,7 @@ ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', functio
 ebiznext.run(['$rootScope', '$location', 'LoginService', function($rootScope, $location, LoginService) {
         $rootScope.$on("$routeChangeStart", function(event, next, current) {
             var loggedInUser = LoginService.isLoggedIn();
-            if (!loggedInUser) {
+            if (!loggedInUser && $location.path() != '/') {
                 $location.path('/');
             }
         });

@@ -11,6 +11,11 @@
         <link href="css/signin.css" rel="stylesheet" >
     </head>
     <body>
+        <div id="error-indicator" style="display:none">
+            <div class=" alert-danger">
+                serveur hors service....
+            </div>
+        </div>
         <div data-ng-show="isLoggedIn" data-ng-include="'partials/menu.html'"  data-ng-controller="navbarController"></div>
         <div class="content" data-ng-view ></div>
         <div id="loading-indicator" style="display: none">

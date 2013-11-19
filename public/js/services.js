@@ -51,7 +51,7 @@ services.factory('Project', ['$http', function($http) {
         return Project;
     }]);
 
-services.factory('LoginService', ['$http', '$cookieStore', function($http, $cookieStore) {
+services.factory('LoginService', ['$http', '$cookies', function($http, $cookies) {
         var urlBase = 'http://localhost:3000/api/auth';
         var LoginService = {};
         LoginService.connect = function(user) {
@@ -59,22 +59,15 @@ services.factory('LoginService', ['$http', '$cookieStore', function($http, $cook
         };
         
         LoginService.isLoggedIn = function() {
-            if (LoginService.getLoggedInfo() !== undefined && LoginService.getLoggedInfo() !== '') {
-                //TODO check connection
-                return true;
-            }
-            return false;
+            var authenticated = $cookies.user ? true : false;
+            return authenticated;
         };
 
         LoginService.Deconnect = function(login) {
-            return $http.post(urlBase + '/logout',{login:login});
+            return $http.delete(urlBase + '/logout',{login:login});
         };
         LoginService.getLoggedInfo = function() {
-            return $cookieStore.get('loggedUser');
-        };
-
-        LoginService.setLoggedInfo = function(login) {
-            $cookieStore.put('loggedUser', login);
+            return $cookies.user;
         };
         return LoginService;
     }]);
