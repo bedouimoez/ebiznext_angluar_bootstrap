@@ -82,7 +82,6 @@ controllers.controller('loginController', ['$scope','$window','LoginService', fu
             if (form.$valid) {
                 LoginService.connect(user).success(function(data) {
                 if (data.exist === true) {
-                    $scope.isLoggedIn = LoginService.isLoggedIn();
                     $window.location.reload(true);
                 }else {
                     $scope.error = true;
