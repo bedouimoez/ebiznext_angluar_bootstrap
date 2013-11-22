@@ -20,7 +20,7 @@ directives.directive('paginator', function() {
         priority: 0,
         restrict: 'A',
         scope: {items: '&'},
-        templateUrl: 'partials/paginator.html',
+        templateUrl: '/partials/paginator.html',
         replace: false,
         compile: function compile(tElement, tAttrs, transclude) {
             return {

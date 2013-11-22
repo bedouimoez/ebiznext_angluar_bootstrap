@@ -1,25 +1,25 @@
 var ebiznext = angular.module('ebiznext', ['directives', 'services', 'controllers', 'ngCookies']);
 ebiznext.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider.when('/contact', {
-            templateUrl: 'partials/contact.html',
+            templateUrl: '/partials/contact.html',
             controller: 'contactController'
-        }).when('/list', {
-            templateUrl: 'partials/list.html',
+        }).when('/project/list', {
+            templateUrl: '/partials/list.html',
             controller: 'projectListController'
         }).when('/project', {
-            templateUrl: 'partials/projets.html',
+            templateUrl: '/partials/projets.html',
             controller: 'projectController'
         }).when('/add', {
-            templateUrl: 'partials/add.html',
+            templateUrl: '/partials/add.html',
             controller: 'addController'
         }).when('/employes', {
-            templateUrl: 'partials/employes.html',
+            templateUrl: '/partials/employes.html',
             controller: 'employesController'
         }).when('/edit/:id', {
-            templateUrl: 'edit.html',
+            templateUrl: '/partials/edit.html',
             controller: 'editController'
         }).when('/', {
-            templateUrl: 'partials/welcome.html',
+            templateUrl: '/partials/welcome.html',
             controller: 'welcomeController'
         }).otherwise({redirectTo: '/'});
         var interceptor = ['$location', '$q', function($location, $q) {
